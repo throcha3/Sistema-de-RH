@@ -1,0 +1,5 @@
+[01:03:35][187.183.38.238]> Ação registrada na pagina/view/lstPresenteismo.php IP do cliente 187.183.38.238 
+[01:03:36][187.183.38.238]> Ação registrada na pagina/view/lstAbsenteismo.php IP do cliente 187.183.38.238 
+[01:03:38][187.183.38.238]> Ação registrada na pagina/view/cadQuestionarioView.php IP do cliente 187.183.38.238 
+[01:03:41][187.183.38.238]> Ação registrada na pagina/view/lstMedico.php IP do cliente 187.183.38.238 
+[01:03:45][187.183.38.238]> Ação registrada na pagina/view/cadMedicoView.php IP do cliente 187.183.38.238 

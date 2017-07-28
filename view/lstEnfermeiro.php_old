@@ -1,0 +1,129 @@
+<?php 
+  include_once '../modal/Enfermeiro.class.php';
+
+
+  $enfermeiro = new Enfermeiro;
+
+  $order      = (isset($_GET['order']))             ? $_GET['order']        : '';
+  $y = (isset($_GET['ord']))             ? $_GET['ord']        : 'asc';
+
+  switch ($order) {
+    case 'nome':
+      $enf = $enfermeiro->findAllOrder('nome_enferm '.$y);
+      break;
+    case '':
+      $enf = $enfermeiro->findAllOrder('id_enferm ' .$y);
+      break;
+    case 'coren':
+      $enf = $enfermeiro->findAllOrder('coren_enferm ' .$y);
+      break;
+    default:
+      echo 'deu ruim';
+      include('includes/footer.php');
+      break;
+  }
+
+  $contador = 1;
+  /*echo '<pre>';
+  var_dump($enf);
+  exit();*/
+  include_once('includes/novoHeader.php');
+?>
+<div class="right_col" role="main">
+  <div class="">
+    <div class="clearfix"></div>
+      <div class="jumbotron">
+      
+
+          <h2>Listagem de Enfermeiros <a href="cadEnfermeiroView.php"><button type="button" class="btn btn-primary pull-right">Novo Cadastro</button></a></h2><br>
+          
+          <div class="bs-example" data-example-id="contextual-table">
+
+          <div class="bs-example" data-example-id="hoverable-table">
+            <table class="table table-hover" >
+                <thead>
+                    <tr style="border-bottom-style: solid;">
+                        <th>
+                          <?php 
+                            if ($y == 'asc') echo '<a href="lstEnfermeiro.php?ord=desc">#';
+                            else echo '<a href="lstEnfermeiro.php?">#';
+                            if ($order=='' and $y=='asc') 
+                              echo '<span class="glyphicon glyphicon-arrow-down"></span>';
+                            if ($order=='' and $y=='desc') 
+                              echo '<span class="glyphicon glyphicon-arrow-up"></span>';
+                          ?>
+                          </a>
+                        </th>
+                        <th>
+                            <?php 
+                            if ($y == 'asc') echo '<a href="lstEnfermeiro.php?order=coren&ord=desc">COREN';
+                            else echo '<a href="lstEnfermeiro.php?order=coren">COREN';
+                            if ($order=='coren' and $y=='asc') 
+                              echo '<span class="glyphicon glyphicon-arrow-down"></span>';
+                            if ($order=='coren' and $y=='desc') 
+                              echo '<span class="glyphicon glyphicon-arrow-up"></span>';
+                          ?>
+                          </a>
+                        </th>
+                        <th>
+                            <?php 
+                            if ($y == 'asc') echo '<a href="lstEnfermeiro.php?order=nome&ord=desc">Nome';
+                            else echo '<a href="lstEnfermeiro.php?order=nome">Nome';
+                            if ($order=='nome' and $y=='asc') 
+                              echo '<span class="glyphicon glyphicon-arrow-down"></span>';
+                            if ($order=='nome' and $y=='desc') 
+                              echo '<span class="glyphicon glyphicon-arrow-up"></span>';
+                          ?>
+                          </a>
+                        </th>
+                        
+                        <th>
+                            Campus
+                        </th>
+                        <th >
+                            Ações
+                        </th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                      include '../modal/Campus.class.php'; 
+                      $cam = new Campus;
+                  
+                      foreach ($enf as $valor) {
+                        $arrayC = $cam->find($valor['id_campus']);
+                        echo '<tr>
+                        <th scope="row">
+                            
+                        <td>
+                            '. $valor['coren_enferm'] . '
+                        </td>
+                       
+                        <td>
+                            '. $valor['nome_enferm'] . ' ' .$valor['sobrenome_enferm'] .  '
+                        </td>
+                        
+                        <td>
+                            '. $arrayC['dsc_campus'] . '
+                        </td>
+                        <td >
+                            <a href="altEnfermeiroView.php?id='. $valor['id_enferm'] . '" >Alterar</a> / <a href="altEnfermeiroView.php?op=del&id='. $valor['id_enferm'] . '">Deletar</a>
+                        </td>
+                      
+                    </tr>  ';
+                      }
+                    ?>
+
+                    
+                </tbody>
+             </table>
+          </div>
+        </div>
+
+
+
+
+  </div>
+</div>
+   <?php include_once('includes/footerNovo.php'); ?>

@@ -1,0 +1,13 @@
+#main {margin-top: 50px;}
+
+label.error{color: #D8000C;font-weight: bold;text-shadow: 0.5px;}
+div.error input,select{border: 1px solid #D8000C;}
+div.error label{color:#D8000C;}
+
+#navbar-top {background-color: #eee; min-height: 60px; padding-top: 10px;}
+#painel-fundo-login{border-color:darkgrey; padding: 1px; margin-top: 10%;}
+.panel-heading, .panel-footer{text-shadow: 1px 1px lightgray; text-align: center; text-transform: uppercase; padding: 3px; }
+.panel-footer{margin-top: 2px;}
+.login-painel-titulo{margin: 0px; font-size: 20px;}
+.login-painel-footer{margin: 2px; font-size: 15px;}
+
